@@ -1,0 +1,19 @@
+4.1 
+Record uniqueness
+
+Record uniqueness is defined by the ResponseId or Respondent column. When someone takes the survey, the system automatically assigns them a unique ID. Since each person gets a different ID, this is the column that proves a row is a completely new entry, thus unique.
+
+4.2 
+Row removal
+
+Removing rows based on a subset of columns is inappropriate. If we deleted rows just because they had the same answers for the columns MainBranch, Employment, and RemoteWork, we would be deleting real data from people who happen to share identical career metrics/status.
+
+Justification
+
+People often share the same traits - thousands of different people have the same job setup. For example, there are millions of full-time, remote, and professional developers. If we tell Python to drop duplicates based on just those few columns, it will keep only the very first person with these career metrics and delete everyone else who gave those same answers.
+
+5.1 
+To clean the dataset, we used df.drop_duplicates() on the entire table instead of picking a specific subset of columns. This means Python only deleted a row if every single column in a row was an exact 100% copy of another row.
+
+5.2
+Instead of checking just a few columns for duplicates, we checked the entire row at once. This ensures we only delete a record if every single survey answer is a 100% exact match, preventing us from accidentally deleting different people who just happen to share the same job metrics.
